@@ -1,0 +1,344 @@
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/main]
+monitor = eDP-1-1
+width = 100%
+height = 27
+fixed-center = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = false
+line-size = 3
+line-color = #f00
+padding-left = 0
+padding-right = 0
+module-margin-left = 1
+module-margin-right = 2
+font-0 = Roboto:fontformat=truetype:size=13;1
+font-1 = FontAwesome:fontformat=truetype:size=13;1
+font-2 = Weather Icons:size=8;1
+modules-left = i3 
+modules-center = 
+modules-right = player-cmus eth wlan battery temperature-CPU temperature-GPU volume weather date
+tray-position = right
+tray-padding = 5
+Dropping unmatched character  (U+e219)
+wm-restack = i3
+
+;[bar/hdmi]
+;monitor = HDMI-1-1
+;width = 100%
+;height = 27
+;fixed-center = false
+;background = ${colors.background}
+;foreground = ${colors.foreground}
+;bottom = false
+;line-size = 3
+;line-color = #f00
+;padding-left = 0
+;padding-right = 0
+;module-margin-left = 1
+;module-margin-right = 2
+;font-0 = Roboto:fontformat=truetype:size=12;1
+;font-1 = FontAwesome:fontformat=truetype:size=12;1
+;font-2 = Weather Icons:size=8;1
+;modules-left = i3
+;modules-center =
+;modules-right = player-cmus eth wlan battery temperature-CPU temperature-GPU volume weather date
+;tray-position = right
+;tray-padding = 5
+;Dropping unmatched character  (U+e219)
+;wm-restack = i3
+
+[module/xwindow]
+type = internal/xwindow
+;label = %title:0:30:...%
+label = %title%
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = white
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = white
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = #e60053
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+label-focused-padding = 2
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 2
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format =  <label>
+;label = BL
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = white
+format-underline = #ff0000
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = white
+format-underline = #4bffdc
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = white
+
+format-disconnected =
+
+[module/eth]
+type = internal/network
+interface = eth0 
+interval = 3.0
+
+format-connected-underline = #9f78e1
+format-connected-prefix = " "
+format-connected-prefix-foreground = white
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = " %a %b %e,"
+;date = " %e/%m"
+time = "%H:%M"
+
+format-prefix = 
+format-prefix-foreground = white
+format-underline = #0a6cf5
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume> 
+format-volume-underline = #ffff00
+;format-volume-foreground = 
+;label-volume = VOL
+
+format-muted-prefix = " "
+format-muted-underline = #ffff00
+format-muted-foreground = white
+
+label-muted = Mute
+label-muted-foreground = white
+
+ramp-volume-foreground = white
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+#[module/pavolume]
+#type = custom/script
+#tail = true
+#label = "%output%%{F#404552}"
+#label-underline = #ffff00
+#label-muted = Mute
+#label-muted-foreground = white
+#label-muted-underline = #ffff00
+#exec = ~/i3wm/pavolume.sh --listen
+#click-right = exec pavucontrol
+#click-left = ~/i3wm/pavolume.sh --togmute
+#interval = 1
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+time-format = %k:%M
+
+;label-discharging = %percentage%%
+label-charging = %percentage%%
+
+label-discharging = %percentage%% %time%
+;label-charging = %percentage%% %time%
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #FF8C00
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = white
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = white
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 =  
+animation-charging-foreground = white
+animation-charging-framerate = 750
+
+[module/temperature-CPU]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 90
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> CPU <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = white
+
+[module/temperature-GPU]
+type = internal/temperature
+thermal-zone = 1
+warn-temperature = 90
+
+format = <ramp> <label>
+format-underline = #66ff33
+format-warn = <ramp> GPU <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 =  
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = white
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = white
+
+menu-0-0 = reboot
+menu-0-0-exec = sudo reboot
+menu-0-1 = power off
+menu-0-1-exec = sudo poweroff
+menu-0-2 = suspend
+menu-0-2-exec = locki3 && sudo systemctl suspend
+menu-0-3 = lock
+menu-0-3-exec = locki3 
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+
+[module/player-cmus]
+type = custom/script
+exec = ~/i3wm/player-cmus.sh
+interval = 1
+click-left = cmus-remote -n
+click-right = cmus-remote -r
+click-middle = cmus-remote -u
+format-underline = #4bffdc
+
+[module/weather]
+type = custom/script
+exec = ~/i3wm/weather.sh
+interval = 600
+label-font = 3
+format-underline = #ffccff
+

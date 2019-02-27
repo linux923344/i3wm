@@ -1,0 +1,51 @@
+sudo pacman -Suy --noconfirm
+sudo pacman -Suy lxappearance thunar network-manager-applet networkmanager feh dmenu --noconfirm 
+sudo pacman -Suy i3
+sudo pacman -S pavucontrol 
+sudo pacman -Suy scrot --noconfirm
+yay teamviewer
+yay visual-studio
+yay light-git
+sh copy
+yay -Suy polybar
+yay nerd-fonts-complete
+sudo pacman -Suy pavucontrol
+sudo pacman -Suy dunst
+sudo pacman -U light-1.2-2-x86_64.pkg.tar.xz
+sudo pacman -U awesome-terminal-fonts-1.1.0-2-any.pkg.tar.xz
+sudo pacman -U ttf-roboto-2.138-1-any.pkg.tar.xz
+sudo pacman -U ttf-weather-icons-2.0.10-1-any.pkg.tar.xz
+sudo pacman -S pacman-contrib
+yay rxvt-unicode-pixbuf
+sudo pacman -Suy xpdf
+yay streamlink
+sudo pacman -Suy lftp filezilla
+sudo pacman -Suy redshift
+yay inxi
+yay -S weather-icons
+yay -S rxvt-unicode-pixbuf
+yay -S urxvt-perls
+yay npm
+yay fzf
+yay perl-file-mimeinfo
+sudo npm install -g livedown
+yay xpdf
+sudo pacman -Suy lutris
+sudo pacman -Suy gnome-desktop python-pillow
+sh vim_install
+cd ./git/dmenu-4.8/
+sudo make
+sudo make install
+yay google-chrome-beta
+sudo pacman -Suy thunderbird cmus mpv
+sudo pacman -Suy python-i3-py
+sudo pacman -Suy xorg-util-macros
+yay ibus-mozc
+sudo pacman -S ranger
+sudo pacman -S texlive-most
+sudo pacman -S jq
+sudo pacman -S screen
+yay weather-icons
+yay megasync
+yay -Suy hplip
+yay keepassxcyay farbfeld

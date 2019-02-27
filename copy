@@ -1,0 +1,19 @@
+#!/bin/bash
+
+mkdir -p ~/.config/i3
+mkdir -p  ~/.config/dunst
+cp dunstrc ~/.config/dunst/dunstrc
+sudo mkdir -p /root/.config/i3
+sudo cp i3status.conf /etc/
+cp config ~/.config/i3/
+sudo cp config /etc/i3/
+sudo cp X /root/.Xdefaults
+cp  X ~/.Xdefaults
+#cp Xinitrc ~/.xinitrc
+sudo cp Xinitrc ~/.xinitrc
+#touch ~/.config/i3/config_dunst
+#cp ./config_dunst ~/.config/i3/config_dunst
+mkdir -p ~/.config/ranger/
+cp rangerrc.conf ~/.config/ranger/rc.conf
+cp rifle.conf ~/.config/ranger/rifle.conf
+cp polybar_config ~/.config/polybar/config
