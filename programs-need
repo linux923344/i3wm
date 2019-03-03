@@ -48,4 +48,10 @@ sudo pacman -S screen
 yay weather-icons
 yay megasync
 yay -Suy hplip
-yay keepassxcyay farbfeld
+yay keepassxc
+yay farbfeld
+yay ncdu 
+yay -S neofetch
+yay -S skypeforlinux-preview-bin
+yay -S pulsemixer
+yay -S ttf-emojione

@@ -12,7 +12,7 @@ set $ws0 "0"
 
 set $mod Mod4
 set $alt Mod1
-font pango:mono 14
+font pango:mono 11
 floating_modifier $mod
 
 #Jezeli chcesz wlaczyc title bar (zakomentuj for_window)
@@ -237,21 +237,22 @@ bindsym $mod+Tab workspace next
 bindsym $mod+F7 exec dmenumount
 bindsym $mod+F8 exec dmenuumount
 
-#Move to another monitor 
+#Move to another monitor - config monitor
 bindsym $mod+Shift+greater move container to output right
 bindsym $mod+Shift+less move container to output left
+bindsym $mod+F10 exec screen-switcher
 
 #ASSIGN
-assign [class="(?i)mpv"] $ws0
 for_window [class="(?i)kodi"] move to workspace $ws0
 for_window [class="(?i)chrome"] move to workspace $ws2
 for_window [class="(?i)firefox"] move to workspace $ws2
 for_window [class="(?i)erbird"] move to workspace $ws3
 for_window [class="(?i)beans"] move to workspace $ws3
-for_window [class="(?i)Code"] move to workspace $ws3
 assign [class="(?i)steam"] $ws4
 assign [class="(?i)speak"] $ws4
 for_window [class="(?i)lutris"] move to workspace $ws4
+for_window [class="(?i)Skype"] move to workspace $ws5
+for_window [class="(?i)Discord"] move to workspace $ws5
 #for_window [class="(?i)keepassxc"] move to workspace $ws7
 for_window [class="(?i)iewer"] move to workspace $ws8
 for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
@@ -267,30 +268,30 @@ exec --no-startup-id xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto
 exec --no-startup-id st -e 
 exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
-#exec --no-startup-id google-chrome-beta 
-exec --no-startup-id firefox
+exec --no-startup-id google-chrome-beta 
+#exec --no-startup-id firefox
 exec --no-startup-id thunderbird
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id megasync
 exec --no-startup-id dunst -config
 exec --no-startup-id sh /home/yorune/.xsessionrc
 exec --no-startup-id feh --bg-fill /home/yorune/.wall.jpg
-exec --no-startup-id polybar main
 exec --no-startup-id keepassxc
 exec --no-startup-id i3-bat-popup&
 exec --no-startup-id hamachi-run
 exec --no-startup-id "sudo openvpn --mktun --dev tun0"
 exec --no-startup-id teamviewer
-#bar {
-#    position top
-#   status_command  i3blocks
-#    tray_output eDP-1-1
-#   colors{
-#        background #232323
-#        statusline #DCDCDC
-#    focused_workspace #333333 #3f4551 #ffffff
-#   active_workspace #333333 #3f4551 #ffffff
-#    inactive_workspace #333333 #222222 #ffffff
-#    urgent_workspace #333333 #222222 #ffffff
-# }
-#}
+#exec --no-startup-id polybar main
+bar {
+   position top
+   status_command i3blocks -c ~/i3wm/i3blocks.conf
+   tray_output eDP-1-1
+   colors{
+        background #232323
+        statusline #DCDCDC
+   focused_workspace #333333 #3f4551 #ffffff
+   active_workspace #333333 #3f4551 #ffffff
+   inactive_workspace #333333 #222222 #ffffff
+   urgent_workspace #333333 #222222 #ffffff
+ }
+}
