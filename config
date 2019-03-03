@@ -286,10 +286,11 @@ bar {
    position top
    status_command i3blocks -c ~/i3wm/i3blocks.conf
    tray_output eDP-1-1
- #  colors{
- #       background #232323
- #       statusline #DCDCDC
- #  focused_workspace #333333 #3f4551 #ffffff
+   colors{
+        background #232323
+        statusline #DCDCDC
+} 
+#  focused_workspace #333333 #3f4551 #ffffff
  #  active_workspace #333333 #3f4551 #ffffff
  #  inactive_workspace #333333 #222222 #ffffff
  #  urgent_workspace #333333 #222222 #ffffff

@@ -4,7 +4,6 @@ mkdir -p ~/.config/i3
 mkdir -p  ~/.config/dunst
 cp dunstrc ~/.config/dunst/dunstrc
 sudo mkdir -p /root/.config/i3
-sudo cp i3status.conf /etc/
 cp config ~/.config/i3/
 sudo cp config /etc/i3/
 sudo cp X /root/.Xdefaults
