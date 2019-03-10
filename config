@@ -241,6 +241,7 @@ bindsym $mod+F8 exec dmenuumount
 bindsym $mod+Shift+greater move container to output right
 bindsym $mod+Shift+less move container to output left
 bindsym $mod+F10 exec screen-switcher
+bindsym $mod+F11 exec dmenuunicode
 
 #ASSIGN
 for_window [class="(?i)kodi"] move to workspace $ws0

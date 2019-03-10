@@ -75,12 +75,12 @@ if info=$(cmus-remote -Q 2> /dev/null); then
 		radioTurn=0
 
 		if [ "$radioTurn" = "0" ]; then
-			#echo "    $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
-			echo "    $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
-			#echo "   $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			#echo " ▶   $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			echo "🎹 $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			#echo "▶   $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
 		elif [ "$status" = "paused" ]; then
 			#echo ""
-			echo "    $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			echo " $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
 		else
 			echo ""
 		fi
