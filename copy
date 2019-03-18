@@ -15,4 +15,3 @@ sudo cp Xinitrc ~/.xinitrc
 mkdir -p ~/.config/ranger/
 cp rangerrc.conf ~/.config/ranger/rc.conf
 cp rifle.conf ~/.config/ranger/rifle.conf
-cp polybar_config ~/.config/polybar/config

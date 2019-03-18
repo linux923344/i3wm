@@ -56,4 +56,4 @@ yay -S skypeforlinux-preview-bin
 yay -S pulsemixer
 yay -S ttf-emojione
 sudo pacman -S qalculate-gtk
-yay -Suy hexchat
+yay -S mupdf
