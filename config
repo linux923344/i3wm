@@ -21,8 +21,8 @@ bindsym $alt+r mode "resize"
 #for_window [class="^.*"] border normal #pixel 5
 for_window [class="^.*"] border pixel 5
 
-gaps outer 15
-gaps inner 15 
+gaps outer 10
+gaps inner 10 
 
 bindsym $mod+Return exec st -e "/bin/zsh"
 
@@ -254,8 +254,8 @@ exec xset s off -dpms
 exec xset b off
 exec xset s off
 exec xset -dpms
-
-exec --no-startup-id xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto 
+exec --no-startup-id ibus-daemon
+#exec --no-startup-id xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto 
 exec --no-startup-id st -e "/bin/zsh"
 exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
