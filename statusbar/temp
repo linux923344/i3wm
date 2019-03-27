@@ -9,6 +9,7 @@ $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)" ;;
 - % is of single core." ;;
 esac
 
-echo -e "$(sensors | awk '/Core 0/ {print $3}') $(sensors | awk '/temp1/ {print $2}')"
+#echo -e "$(sensors | awk '/Core 0/ {print $3}') $(sensors | awk '/temp1/ {print $2}')"
+echo -e "$(sensors | awk '/Core 0/ {print $3}') +$(nvidia-smi -q -d temperature | grep -i "GPU Current" |sed -r 's/GPU Current Temp            ://'| sed -r 's/ C//' |sed -e 's/^[ \t]*//').0°C"
 
 #sensors | awk '/Core 0/ {print $3}'
