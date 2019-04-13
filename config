@@ -205,19 +205,25 @@ bindsym XF86AudioNext exec cmus-remote -n
 bindsym XF86AudioPrev exec cmus-remote -r
 
 # Use also different cotrols for CMUS
-bindsym $mod+shift+apostrophe exec cmus-remote -u 
-bindsym $mod+shift+bracketright exec cmus-remote -n
-bindsym $mod+shift+bracketleft  exec cmus-remote -r
-bindsym $mod+shift+F12 exec --no-startup-id "pactl set-sink-volume 0 +5%"
-bindsym $mod+shift+F11 exec --no-startup-id "pactl set-sink-volume 0 -5%" 
-bindsym $mod+shift+F10 exec --no-startup-id pactl set-sink-mute 0 toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
-
+# $mod+F7 -> PLAY/PAUSE
+# $mod+F8 -> PREV
+# $mod+F9 -> NEXT
+# $mod+F10 -> MUTE/UNMUTE
+# $mod+F11 -> VOL -5%
+# $mod+F12 -> VOL +5%
+bindsym $mod+F7 exec playerctl play-pause 
+bindsym $mod+F9 exec playerctl next
+bindsym $mod+F8  exec playerctl previous
+bindsym $mod+F3 exec --no-startup-id "pactl set-sink-volume 0 +5%"
+bindsym $mod+F2 exec --no-startup-id "pactl set-sink-volume 0 -5%" 
+bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 0 toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Run pavucontrol
 bindsym $mod+o exec "pavucontrol"
 
 #Run Calc
 bindsym $mod+k exec "qalculate-gtk"
+
 #CMUS  
 bindsym $mod+m exec st -e "cmus-shell" 
 bindsym $mod+r exec st -e "ranger" 
@@ -231,8 +237,8 @@ bindsym $mod+l exec locki3
 bindsym $mod+Tab workspace next
 
 #Mount / unmount
-bindsym $mod+F7 exec dmenumount
-bindsym $mod+F8 exec dmenuumount
+bindsym $mod+F4 exec dmenumount
+bindsym $mod+F5 exec dmenuumount
 
 #Move to another monitor - config monitor
 bindsym $mod+Shift+greater move container to output right
@@ -242,8 +248,8 @@ bindsym $mod+F11 exec dmenuunicode
 
 #ASSIGN
 for_window [class="(?i)kodi"] move to workspace $ws0
-for_window [class="(?i)chrome"] move to workspace $ws2
-for_window [class="(?i)firefox"] move to workspace $ws2
+for_window [class="(?i)Spotify"] move to workspace $ws0
+for_window [class="(?i)Opera"] move to workspace $ws2
 for_window [class="(?i)erbird"] move to workspace $ws3
 for_window [class="(?i)beans"] move to workspace $ws3
 assign [class="(?i)steam"] $ws4
@@ -263,7 +269,7 @@ exec --no-startup-id ibus-daemon
 exec --no-startup-id st -e "/bin/zsh"
 exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
-exec --no-startup-id google-chrome-beta
+exec --no-startup-id opera-developer 
 exec --no-startup-id thunderbird-bin
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id megasync
@@ -275,6 +281,7 @@ exec --no-startup-id "/mnt/mega/Systems/Gentoo/apps/KeePass.AppImage"
 exec --no-startup-id transmission-daemon
 exec --no-startup-id i3-bat-popup&
 #exec --no-startup-id "sudo openvpn --mktun --dev tun0"
+exec --no-startup-id spotify
 exec --no-startup-id teamviewer
 bar {
    position top
