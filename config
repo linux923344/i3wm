@@ -248,7 +248,6 @@ bindsym $mod+F11 exec dmenuunicode
 
 #ASSIGN
 for_window [class="(?i)kodi"] move to workspace $ws0
-for_window [class="(?i)Spotify"] move to workspace $ws0
 for_window [class="(?i)Opera"] move to workspace $ws2
 for_window [class="(?i)erbird"] move to workspace $ws3
 for_window [class="(?i)beans"] move to workspace $ws3
@@ -269,8 +268,8 @@ exec --no-startup-id ibus-daemon
 exec --no-startup-id st -e "/bin/zsh"
 exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
-exec --no-startup-id opera-developer 
-exec --no-startup-id thunderbird-bin
+#exec --no-startup-id opera-developer 
+#exec --no-startup-id thunderbird-bin
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id megasync
 exec --no-startup-id dunst -config
@@ -281,7 +280,6 @@ exec --no-startup-id "/mnt/mega/Systems/Gentoo/apps/KeePass.AppImage"
 exec --no-startup-id transmission-daemon
 exec --no-startup-id i3-bat-popup&
 #exec --no-startup-id "sudo openvpn --mktun --dev tun0"
-exec --no-startup-id spotify
 exec --no-startup-id teamviewer
 bar {
    position top
