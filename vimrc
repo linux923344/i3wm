@@ -5,10 +5,11 @@ set incsearch
 nnoremap ww :w<CR>
 "nnoremap ee :w<CR>:silent! LLPStartPreview<CR>
 nnoremap ee :!mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
-"autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw! 
-autocmd BufWritePost *.tex silent! execute "!pdflatex -interaction=nonstopmode %" | redraw!
+"autocmd BufWritePost *.tex silent! execute "!pdflatex %" | redraw! 
+"autocmd BufWritePost *.tex silent! execute "!pdflatex --shell-escape -synctex=1 -interaction=nonstopmode % " | redraw!
+autocmd BufWritePost *.tex silent! execute "!latexmk -pdf -silent %" | redraw!
+autocmd BufWritePost *.tex silent! execute "!sudo rm -rf *.fls *.fdb_latexmk *.ind *.ilg *.nav *.snm *.toc *.log *.aux *.out *.idx *.lof *.lot *.synctex.gz" | redraw!
 autocmd BufWritePost *.tex silent! execute "!sudo pkill -HUP mupdf" | redraw!
-autocmd BufWritePost *.tex silent! execute "!sudo rm -rf *.log *.aux *.out" | redraw!
 nnoremap <F7> :tabprevious<CR>
 nnoremap <F8> :tabnext<CR>
 nnoremap <buffer> aa :exec '!clear; python' shellescape(@%, 1)<cr>
@@ -32,7 +33,6 @@ map <C-n> :NERDTreeToggle<CR>
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -45,6 +45,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex'
 Plug 'nmante/vim-latex-live-preview'
+"Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " VIM
@@ -54,6 +55,9 @@ call plug#end()
 	autocmd FileType tex inoremap ,exe \begin{exe}<Enter>\ex<Space><Enter>\end{exe}<Enter><Enter><++><Esc>3kA
 	autocmd FileType tex inoremap ,em \emph{}<Esc>T{i
 	autocmd FileType tex inoremap ,bf \textbf{}<Esc>T{i
+	autocmd FileType tex inoremap ,co \coun{\textbf{}}\\<Esc>T{i
+	autocmd FileType tex inoremap ,nbf \noindent\textbf{}\\<Esc>T{i
+	autocmd FileType tex inoremap ,ln \par\noindent \line(1,0){400}\<Esc>T{i
 	autocmd FileType tex vnoremap , <ESC>`<i\{<ESC>`>2la}<ESC>?\\{<Enter>a
 	autocmd FileType tex inoremap ,it \textit{}<++><Esc>T{i
 	autocmd FileType tex inoremap ,ct \textcite{}<++><Esc>T{i
