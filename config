@@ -30,7 +30,6 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run 
-
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -189,10 +188,11 @@ mode "$mode_gaps_outer" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
+set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5%"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -5%" 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume $sink +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume $sink -5%" 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 10 && notify-send "Brightness +" # increase screen brightness
@@ -214,9 +214,9 @@ bindsym XF86AudioPrev exec cmus-remote -r
 bindsym $mod+F7 exec playerctl play-pause 
 bindsym $mod+F9 exec playerctl next
 bindsym $mod+F8  exec playerctl previous
-bindsym $mod+F3 exec --no-startup-id "pactl set-sink-volume 0 +5%"
-bindsym $mod+F2 exec --no-startup-id "pactl set-sink-volume 0 -5%" 
-bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 0 toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
+bindsym $mod+F3 exec --no-startup-id "pactl set-sink-volume $sink +5%"
+bindsym $mod+F2 exec --no-startup-id "pactl set-sink-volume $sink -5%" 
+bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute $sink toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Run pavucontrol
 bindsym $mod+o exec "pavucontrol"
@@ -226,7 +226,8 @@ bindsym $mod+k exec "qalculate-gtk"
 
 #CMUS  
 bindsym $mod+m exec st -e "cmus-shell" 
-bindsym $mod+r exec st -e "ranger" 
+bindsym $mod+r exec st -e "ranger"
+bindsym $mod+i workspace $ws3 exec st -e "/bin/zsh && neomutt"
 #bindsym $mod+p workspace $ws7, exec keepassxc 
 bindsym $mod+p [instance="keepassxc"] scratchpad show, move position center
 
@@ -249,7 +250,6 @@ bindsym $mod+F11 exec dmenuunicode
 #ASSIGN
 for_window [class="(?i)kodi"] move to workspace $ws0
 for_window [class="(?i)Opera"] move to workspace $ws2
-for_window [class="(?i)erbird"] move to workspace $ws3
 for_window [class="(?i)beans"] move to workspace $ws3
 assign [class="(?i)steam"] $ws4
 assign [class="(?i)speak"] $ws4
@@ -266,10 +266,9 @@ exec xset -dpms
 exec --no-startup-id ibus-daemon
 #exec --no-startup-id xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto 
 exec --no-startup-id st -e "/bin/zsh"
-exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
+#exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
-exec --no-startup-id opera-developer 
-exec --no-startup-id thunderbird-bin
+#exec --no-startup-id opera-developer 
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id megasync
 exec --no-startup-id dunst -config

@@ -36,8 +36,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xterm*faceSize: 20
+#xterm*faceSize: 20
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
-#exec i3
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session i3
+exec i3
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session i3
