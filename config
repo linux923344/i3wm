@@ -12,17 +12,17 @@ set $ws0 "0"
 
 set $mod Mod4
 set $alt Mod1
-font pango:mono 14
+font pango:mono 13
 floating_modifier $mod
 
 #Jezeli chcesz wlaczyc title bar (zakomentuj for_window)
 bindsym $alt+r mode "resize"
 
 #for_window [class="^.*"] border normal #pixel 5
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 5 
 
 gaps outer 10
-gaps inner 10 
+gaps inner 10
 
 bindsym $mod+Return exec st -e "/bin/zsh"
 
@@ -55,7 +55,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -66,9 +66,6 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # Screenshot
 bindsym Print exec scrot $HOME/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send "Screenshot captured"
@@ -190,9 +187,9 @@ mode "$mode_gaps_outer" {
 
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume $sink +5%"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume $sink -5%" 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id "ponymix increase 5"
+bindsym XF86AudioLowerVolume exec --no-startup-id "ponymix decrease 5" 
+bindsym XF86AudioMute exec --no-startup-id ponymix toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 10 && notify-send "Brightness +" # increase screen brightness
@@ -214,9 +211,9 @@ bindsym XF86AudioPrev exec cmus-remote -r
 bindsym $mod+F7 exec playerctl play-pause 
 bindsym $mod+F9 exec playerctl next
 bindsym $mod+F8  exec playerctl previous
-bindsym $mod+F3 exec --no-startup-id "pactl set-sink-volume $sink +5%"
-bindsym $mod+F2 exec --no-startup-id "pactl set-sink-volume $sink -5%" 
-bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute $sink toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
+bindsym $mod+F3 exec --no-startup-id "ponymix increase 5"
+bindsym $mod+F2 exec --no-startup-id "ponymix decrease 5" 
+bindsym $mod+F1 exec --no-startup-id ponymix toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Run pavucontrol
 bindsym $mod+o exec "pavucontrol"
@@ -251,11 +248,15 @@ bindsym $mod+F11 exec dmenuunicode
 for_window [class="(?i)kodi"] move to workspace $ws0
 for_window [class="(?i)Opera"] move to workspace $ws2
 for_window [class="(?i)beans"] move to workspace $ws3
-assign [class="(?i)steam"] $ws4
+for_window [class="(?i)steam"] layout tabbed
+for_window [class="(?i)discord"] layout tabbed
+for_window [class="(?i)speak"] layout tabbed
+assign [class="(?i)steam"] $ws4 
 assign [class="(?i)speak"] $ws4
+assign [class="(?i)discord"] $ws4
 for_window [class="(?i)lutris"] move to workspace $ws4
-#for_window [class="(?i)keepassxc"] move to workspace $ws7
 for_window [class="(?i)iewer"] move to workspace $ws8
+
 for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
 
 #AUTOSTART
@@ -266,7 +267,7 @@ exec xset -dpms
 exec --no-startup-id ibus-daemon
 #exec --no-startup-id xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto 
 exec --no-startup-id st -e "/bin/zsh"
-#exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
+exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
 #exec --no-startup-id opera-developer 
 exec --no-startup-id nm-applet --sm-disable
