@@ -1,5 +1,9 @@
 #!/bin/sh
 
+CPUTEMP=$(echo $(sensors | awk '/Core 0/ {print $3}' | sed -r 's/°C//' | sed -r 's/\+//'| cut -f1 -d"."))
+GPUTEMP=$(echo $(nvidia-smi -q -d temperature | grep -i "GPU Current" |sed -r 's/GPU Current Temp            ://'| sed -r 's/ C//' | xargs))
+
+
 case $BLOCK_BUTTON in
 	1) notify-send "<b>🖥 CPU hogs</b>:
 $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)" ;;
@@ -10,6 +14,9 @@ $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)" ;;
 esac
 
 #echo -e "$(sensors | awk '/Core 0/ {print $3}') $(sensors | awk '/temp1/ {print $2}')"
-echo -e "$(sensors | awk '/Core 0/ {print $3}') +$(nvidia-smi -q -d temperature | grep -i "GPU Current" |sed -r 's/GPU Current Temp            ://'| sed -r 's/ C//' |sed -e 's/^[ \t]*//').0°C"
+echo -e "🔥 $(sensors | awk '/Core 0/ {print $3}') +$(nvidia-smi -q -d temperature | grep -i "GPU Current" |sed -r 's/GPU Current Temp            ://'| sed -r 's/ C//' |sed -e 's/^[ \t]*//').0°C"
 
-#sensors | awk '/Core 0/ {print $3}'
+#if [ $CPUTEMP -ge 80 ] || [ $GPUTEMP -ge 80  ]; then
+#		echo -e "🔥 C:$CPUTEMP°C G:$GPUTEMP°C"
+#fi
+#sleep 5

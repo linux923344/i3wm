@@ -1,5 +1,5 @@
 [global]
-    font = Mono 10
+    font = Mono 14
 
     # Allow a small subset of html markup:
     #   <b>bold</b>

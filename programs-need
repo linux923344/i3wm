@@ -36,7 +36,7 @@ sh vim_install
 cd ./git/dmenu-4.8/
 sudo make
 sudo make install
-yay google-chrome-beta
+yay firefox
 sudo pacman -Suy thunderbird cmus mpv
 sudo pacman -Suy python-i3-py
 sudo pacman -Suy xorg-util-macros
@@ -51,8 +51,6 @@ yay -Suy hplip
 yay keepassxc
 yay farbfeld
 yay ncdu 
-yay -S neofetch
-yay -S skypeforlinux-preview-bin
 yay -S pulsemixer
 yay -S ttf-emojione
 sudo pacman -S qalculate-gtk
