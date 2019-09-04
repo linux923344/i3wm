@@ -193,8 +193,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "ponymix decrease 5"
 bindsym XF86AudioMute exec --no-startup-id ponymix toggle &&  notify-send "Volume $(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $4 }')" # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 10 && notify-send "Brightness +" # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 10 && notify-send "Brightness -" # decrease screen brightness
+bindsym XF86MonBrightnessUp exec sudo light -A 10 && notify-send "Brightness +" # increase screen brightness
+bindsym XF86MonBrightnessDown exec sudo light -U 10 && notify-send "Brightness -" # decrease screen brightness
 
 # CMUS Media player controls
 bindsym XF86AudioPlay exec cmus-remote -u
@@ -272,7 +272,7 @@ exec xset -dpms
 #exec --no-startup-id xrdb -load ~/.xresources 
 #exec --no-startup-id ibus-daemon
 #exec --no-startup-id compton
-exec --no-startup-id /usr/local/bin/st -e /bin/sh -c "tmux new-session -s BASE -n HOME '/bin/fish'\; new-window -n GOTOP 'gotop'\; new-window -n MUSIC 'cmus'\; new-window -n SERVER 'ssh root@jaqu3.ddns.net -p 2222'\; new-window -n PING 'ping google.com'"&
+exec --no-startup-id /usr/local/bin/st -e /bin/sh -c "tmux new-session -s BASE -n HOME '/bin/zsh'\; new-window -n GOTOP 'gotop'\; new-window -n MUSIC 'cmus'\; new-window -n SERVER 'ssh root@jaqu3.ddns.net -p 2222'"&
 exec --no-startup-id "redshift -l 52.2327:18.3036 -t 6500:3200"
 exec --no-startup-id ~/i3wm/i3-layout.py&
 exec --no-startup-id firefox
